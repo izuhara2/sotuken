@@ -4,6 +4,10 @@ let ALF=1;
 let DEL=4;
 let SIG=0.5;
 let EPS=0.000001;
+let a=new Array(20);
+let b=new Array(200);
+let time=0.0;
+
 
 function main(){
     let ans = 0.0, time = 0.0;
@@ -70,6 +74,7 @@ function minimum(){
 function tim(){
     let j,l;
     let min;
+    let ans;
 
     for(j=0; j<k; j++){
         min = minimum(a);
@@ -105,6 +110,8 @@ function sentaku(){
 function poison(){
     let taw;
 
-    taw = -log(Math.random()/32768+EPS)/ALF;
+    taw = -Math.log(Math.random()/32768+EPS)/ALF;
     return taw;
 }
+
+main();
