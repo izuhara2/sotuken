@@ -140,8 +140,8 @@ function tim(ans, time, a, b){
             k--;
             for(l=0; l<k; l++){
                 b[l]=b[l+1];
-                b[l+1]=0.0;
             }
+            b[l+1]=0.0;
         }
     }
     return ans;
