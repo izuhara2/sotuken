@@ -169,17 +169,4 @@ function poison(t) {
     return taw;
 }
 
-function madoguti_sentaku() {
-    for (let x = 0; x < 20; x++) {
-        if (a[x] >= time) {
-            let aki = x; //
-            console.log("窓口" + aki + "が空いています");
-        } else if (a[x] == 0) {
-            let aki = x;
-            console.log("窓口" + aki + "が空いています");
-        }
-    }
-}
-
 main();
-madoguti_sentaku();
