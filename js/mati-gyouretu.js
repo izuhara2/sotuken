@@ -12,7 +12,7 @@ let time = 0.0;
 function main() {
     let i;
 
-    console.log("試行回数   平均待ち時間");
+    //console.log("試行回数   平均待ち時間");
     for (i = 0; i < 20; i++) {
         a[i] = 0.0;
     }
@@ -24,72 +24,32 @@ function main() {
         time += poison(time);
         //console.log( {time} );
         ans = tim(ans, time, a, b);
-        /* でバック用 */
-        let a0 = a[0];
-        let a1 = a[1];
-        let a2 = a[2];
-        let a3 = a[3];
-        let a4 = a[4];
-        let a5 = a[5];
-        let a6 = a[6];
-        let a7 = a[7];
-        let a8 = a[8];
-        let a9 = a[9];
-        let a10 = a[10];
-        let a11 = a[11];
-        let a12 = a[12];
-        let a13 = a[13];
-        let a14 = a[14];
-        let a15 = a[15];
-        let a16 = a[16];
-        let a17 = a[17];
-        let a18 = a[18];
-        let a19 = a[19];
+        
+        console.log({time,ans},{a});
 
-        let b0 = b[0];
-        let b1 = b[1];
-        let b2 = b[2];
-        let b3 = b[3];
-        let b4 = b[4];
-        let b5 = b[5];
-        let b6 = b[6];
-        let b7 = b[7];
-        let b8 = b[8];
-        let b9 = b[9];
-        let b10 = b[10];
-        let b11 = b[11];
-        let b12 = b[12];
-        let b13 = b[13];
-        let b14 = b[14];
-        let b15 = b[15];
-        let b16 = b[16];
-        let b17 = b[17];
-        let b18 = b[18];
-        let b19 = b[19];
-        let b20 = b[20];
-        //console.log( {time, ans, a0} );　//デバック用
-        console.log({
-            time, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19,
-            b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12
-        }); //でバック用
-
-        for (let x = 0; x < 20; x++) {
-            if (a[x] <= time) {
+        for (let x = 0; x < M; x++) {
+            if (a[x] <= time || a[x] == 0) {
                 let aki = x; //
-                console.log("窓口" + aki + "が空いています");
-            } else if (a[x] == 0) {
-                let aki = x;
-                console.log("窓口" + aki + "が空いています");
-            }
+                //console.log("窓口" + aki + "が空いています");
+            } 
         }
 
         cll(time, a);
         sentaku(time, a, b);
 
+        /*12/07 人の動き可視化プログラム */
+        let a1=a[0];
+        console.log(a1);
+        for (let x = 0; x < M; x++) {
+            if (a1 > 0) {
+                let aki = x; 
+             } 
+        }
+
         //解答打ち出し
         if (i % 2000 == 0) {
             let answer = ans / i;
-            console.log({ i, answer });
+            //console.log({ i, answer });
         }
     }
     return 0;
