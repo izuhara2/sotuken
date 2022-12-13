@@ -19,6 +19,12 @@ h1{
    padding: 20px;
 }
 
+.button{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px; 
+}
+
 #str{
     background: aliceblue;
 }
@@ -29,10 +35,6 @@ h1{
 
 #cle{
     background: rgb(235, 156, 156); 
-}
-
-#graph{
-   
 }
 
 /*スライダー共通*/

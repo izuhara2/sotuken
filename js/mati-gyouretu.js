@@ -23,28 +23,12 @@ function main() {
     for (i = 1; i <= 30000; i++) {
         time += poison(time);
         //console.log( {time} );
+        console.log({time,a});
         ans = tim(ans, time, a, b);
-        
-        console.log({time,ans},{a});
-
-        for (let x = 0; x < M; x++) {
-            if (a[x] <= time || a[x] == 0) {
-                let aki = x; //
-                //console.log("窓口" + aki + "が空いています");
-            } 
-        }
-
         cll(time, a);
         sentaku(time, a, b);
 
-        /*12/07 人の動き可視化プログラム */
-        let a1=a[0];
-        console.log(a1);
-        for (let x = 0; x < M; x++) {
-            if (a1 > 0) {
-                let aki = x; 
-             } 
-        }
+        
 
         //解答打ち出し
         if (i % 2000 == 0) {
@@ -68,6 +52,7 @@ function gauss() {
 function cll(time, a) {
     for (let j = 0; j < M; j++) {        //jは窓口数と比較
         if (a[j] < time) {
+            console.log("窓口" +j+ "が空いています");
             a[j] = 0.0;
             return;
         }
@@ -115,6 +100,7 @@ function sentaku(t, a, b) {
         if (a[j] == 0.0) {
             ///let gg = gauss();
             //console.log( {j, gg, t}); //デバック用
+            console.log(j + "に入りました");
             a[j] = t + gauss();
             return;
         }

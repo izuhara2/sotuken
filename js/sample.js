@@ -32,7 +32,7 @@ let slider3 = new slider_parameter(
     document.querySelector('#slider3'),
     document.querySelector( '#flow' ) //流れ密度
 )
-
+console.log(slider1.slider_value);
 /*グラフ領域の作成*/
 window.addEventListener("load", function(){
     var element = document.getElementById('graph');
