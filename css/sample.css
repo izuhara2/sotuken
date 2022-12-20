@@ -1,60 +1,56 @@
-h1{
+h1 {
     border-bottom: solid 2px blue;
 }
 
-.layout_up{
-   display: grid;
-   grid-template-columns: 1fr 1fr;
+.layout_up {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
-.layout_middle{
+.layout_middle {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     float: left;
 }
 
 /*ボタン共通*/
-.example1{
-   width: 100px;
-   padding: 20px;
+.example1 {
+    width: 100px;
+    padding: 20px;
 }
 
-.button{
+.button {
     display: flex;
     justify-content: center;
-    margin-top: 50px; 
+    margin-top: 50px;
 }
 
-#str{
+#str {
     background: aliceblue;
 }
 
-#pau{
+#pau {
     background: rgb(168, 168, 239);
 }
 
-#cle{
-    background: rgb(235, 156, 156); 
+#cle {
+    background: rgb(235, 156, 156);
 }
 
 /*スライダー共通*/
-.slider_sample1{
+.slider_sample1 {
     width: 75%;
 }
 
-.animation {
+/* .animation {
 
-}
+} */
 
-.customer{
+.customer {
     position: absolute;
     height: 60px;
     width: 80px;
-}
-
-#customer01 {
-    left: 610px;
-    top: 580px;
+    position: absolute;
     transition-property: all;
     transition-duration: 2s;
     transition-timing-function: ease-in-out;
@@ -63,97 +59,103 @@ h1{
     -moz-transition-timing-function: ease-in-out;
 }
 
-#customer02{
+#customer01 {
+    left: 610px;
+    top: 580px;
+    translate: (60, 200);
+}
+
+#customer02 {
     left: 610px;
     top: 500px;
 }
 
-#customer03{
+#customer03 {
     left: 680px;
     top: 500px;
 }
 
-#customer04{
+#customer04 {
     left: 750px;
     top: 500px;
 }
 
-#customer05{
+#customer05 {
     left: 820px;
     top: 500px;
 }
 
-#customer06{
+#customer06 {
     left: 890px;
     top: 500px;
 }
 
-#customer07{
+#customer07 {
     left: 960px;
     top: 500px;
 }
 
-#customer08{
+#customer08 {
     left: 1030px;
     top: 500px;
 }
 
-#customer09{
+#customer09 {
     left: 1100px;
     top: 500px;
 }
 
-#customer10{
+#customer10 {
     left: 1170px;
     top: 500px;
 }
 
-#customer11{
+#customer11 {
     left: 1240px;
     top: 500px;
 }
 
-#customer12{
+#customer12 {
     left: 1310px;
     top: 500px;
 }
 
-#customer13{
+#customer13 {
     left: 1380px;
     top: 500px;
 }
 
-#customer14{
+#customer14 {
     left: 1450px;
     top: 500px;
 }
 
-#customer15{
+#customer15 {
     left: 1520px;
     top: 500px;
 }
 
-#customer16{
+#customer16 {
     left: 1590px;
     top: 500px;
 }
 
-#customer17{
+#customer17 {
     left: 1660px;
     top: 500px;
 }
 
-#customer18{
+#customer18 {
     left: 1730px;
     top: 500px;
 }
 
-#customer19{
+#customer19 {
     left: 1800px;
     top: 500px;
 }
 
-#customer20{
+#customer20 {
     left: 1870px;
     top: 500px;
 }
