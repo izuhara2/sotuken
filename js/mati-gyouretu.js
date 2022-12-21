@@ -8,6 +8,10 @@ let regi = new Array(20);
 let b = new Array(200);
 let ans = 0.0;
 let time = 0.0;
+const reg = {
+    x: [ 60, 170, 280, 390, 500, 610, 720, 830, 940, 1050 ],
+    y: [ 200, 200, 200, 200, 200, 200, 200, 200, 200, 200 ]
+}
 
 function main() {
     let i;
@@ -20,7 +24,8 @@ function main() {
         b[i] = 0.0;
     }
 
-    for (i = 1; i <= 30000; i++) {
+    // for (i = 1; i <= 30000; i++) {
+        setInterval( () => {
         time += poison(time);
         //console.log( {time} );
         console.log({ time, regi });
@@ -30,12 +35,12 @@ function main() {
 
 
 
-        //解答打ち出し
-        if (i % 2000 == 0) {
-            let answer = ans / i;
-            //console.log({ i, answer });
-        }
-    }
+        // //解答打ち出し
+        // if (i % 2000 == 0) {
+        //     let answer = ans / i;
+        //     //console.log({ i, answer });
+        // }
+    }, 500);
     return 0;
 }
 
@@ -88,52 +93,52 @@ function tim(ans, time, regi, b) {
             function moveImage() {
                 let x = 0;
                 let y = 0;
-                 if (aki == 0) {
+                if (aki == 0) {
                     x = 60;
                     y = 200;
                     document.querySelector('#customer01').style.left = x;
                     document.querySelector('#customer01').style.top = y;
-                }else if(aki == 1){
+                } else if (aki == 1) {
                     x = 170;
                     y = 200;
                     document.querySelector('#customer01').style.left = x;
                     document.querySelector('#customer01').style.top = y;
-                }else if(aki == 2){
+                } else if (aki == 2) {
                     x = 280;
                     y = 200;
                     document.querySelector('#customer01').style.left = x;
                     document.querySelector('#customer01').style.top = y;
-                }else if(aki == 3){
+                } else if (aki == 3) {
                     x = 390;
                     y = 200;
                     document.querySelector('#customer01').style.left = x;
                     document.querySelector('#customer01').style.top = y;
-                }else if(aki == 4){
+                } else if (aki == 4) {
                     x = 500;
                     y = 200;
                     document.querySelector('#customer01').style.left = x;
                     document.querySelector('#customer01').style.top = y;
-                }else if(aki == 5){
+                } else if (aki == 5) {
                     x = 610;
                     y = 200;
                     document.querySelector('#customer01').style.left = x;
                     document.querySelector('#customer01').style.top = y;
-                }else if(aki == 6){
+                } else if (aki == 6) {
                     x = 720;
                     y = 200;
                     document.querySelector('#customer01').style.left = x;
                     document.querySelector('#customer01').style.top = y;
-                }else if(aki == 7){
+                } else if (aki == 7) {
                     x = 830;
                     y = 200;
                     document.querySelector('#customer01').style.left = x;
                     document.querySelector('#customer01').style.top = y;
-                }else if(aki == 8){
+                } else if (aki == 8) {
                     x = 940;
                     y = 200;
                     document.querySelector('#customer01').style.left = x;
                     document.querySelector('#customer01').style.top = y;
-                }else if(aki == 9){
+                } else if (aki == 9) {
                     x = 1050;
                     y = 200;
                     document.querySelector('#customer01').style.left = x;
@@ -161,60 +166,11 @@ function sentaku(t, regi, b) {
             let enter = j;
             console.log(enter + "に入りました");
             /* 窓口に入るアニメーション */
-            function enterImage() {
-                let x = 0;
-                let y = 0;
-                if (enter == 0) {
-                    x = 60;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                }else if(enter == 1){
-                    x = 170;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                }else if(enter == 2){
-                    x = 280;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                }else if(enter == 3){
-                    x = 390;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                }else if(enter == 4){
-                    x = 500;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                }else if(enter == 5){
-                    x = 610;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                }else if(enter == 6){
-                    x = 720;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                }else if(enter == 7){
-                    x = 830;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                }else if(enter == 8){
-                    x = 940;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                }else if(enter == 9){
-                    x = 1050;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                }
+            if (typeof window === 'object') {      //document.querySelectorでエラーがでたため
+                //documentを使う関数を入れる
+                document.querySelector('#customer1').style.left = reg.x[enter];
+                document.querySelector('#customer1').style.top = reg.y[enter];
+
             }
             return;
         }
