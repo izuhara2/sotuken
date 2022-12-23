@@ -59,48 +59,47 @@ h1 {
     -moz-transition-timing-function: ease-in-out;
 }
 
-#customer01 {
+#customer1 {
     left: 610px;
     top: 580px;
-    translate: (60, 200);
 }
 
-#customer02 {
+#customer2 {
     left: 610px;
     top: 500px;
 }
 
-#customer03 {
+#customer3 {
     left: 680px;
     top: 500px;
 }
 
-#customer04 {
+#customer4 {
     left: 750px;
     top: 500px;
 }
 
-#customer05 {
+#customer5 {
     left: 820px;
     top: 500px;
 }
 
-#customer06 {
+#customer6 {
     left: 890px;
     top: 500px;
 }
 
-#customer07 {
+#customer7 {
     left: 960px;
     top: 500px;
 }
 
-#customer08 {
+#customer8 {
     left: 1030px;
     top: 500px;
 }
 
-#customer09 {
+#customer9 {
     left: 1100px;
     top: 500px;
 }

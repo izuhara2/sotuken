@@ -1,37 +1,51 @@
+class Customer {
+    constructor(number, element) { //nember:その人が列の何番目にいるか, taken_tiem:処理にかかる時間
+        this.element = element;
+        this.number = number;
+        // this.taken_time = taken_time;
+    }
+}
+
 let k = 0; //待ち人数
 let M = 5;  //窓口数
 let ALF = 1; //流れ密度
 let DEL = 8; //平均処理時間
 let SIG = .5; //処理時間のばらつき
 let EPS = .000001; //log計算時のバイアス
-let regi = new Array(20);
-let b = new Array(200);
-let ans = 0.0;
-let time = 0.0;
-const reg = {
-    x: [ 60, 170, 280, 390, 500, 610, 720, 830, 940, 1050 ],
-    y: [ 200, 200, 200, 200, 200, 200, 200, 200, 200, 200 ]
+let regi = new Array(20); //窓口の配列
+let b = []; //行列の配列
+let ans = 0.0; //平均待ち時間
+let time = 0.0; //プログラム内の現在時刻
+const regi_enter = { //客が窓口でサービスを受ける座標
+    x: [60, 170, 280, 390, 500, 610, 720, 830, 940, 1050],
+    y: [650, 650, 650, 650, 650, 650, 650, 650, 650]
+}
+const retu_location = {
+    x: [610, 610, 680, 750, 820, 890, 970, 1040, 1110, 1170, 1240, 1310, 1380, 1450, 1520, 1590, 1660, 1730, 1800, 1870],
+    y: [580, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500]
 }
 
 function main() {
-    let i;
+    let elements = [];
+    for (let i = 1; i <= 20; i++) {
+        elements.push(document.querySelector('#customer' + i));
+    }
+    console.log(elements);
+
 
     //console.log("試行回数   平均待ち時間");
-    for (i = 0; i < 20; i++) {
-        regi[i] = 0.0;
-    }
-    for (i = 0; i < 200; i++) {
-        b[i] = 0.0;
+    for (let i = 0; i < 20; i++) {
+        regi[i] = 0;
     }
 
     // for (i = 1; i <= 30000; i++) {
-        setInterval( () => {
-        time += poison(time);
+    setInterval(() => {
+        time += poison();
         //console.log( {time} );
         console.log({ time, regi });
         ans = tim(ans, time, regi, b);
         cll(time, regi);
-        sentaku(time, regi, b);
+        sentaku(time, regi, b, elements);
 
 
 
@@ -40,7 +54,7 @@ function main() {
         //     let answer = ans / i;
         //     //console.log({ i, answer });
         // }
-    }, 500);
+    }, 2000);
     return 0;
 }
 
@@ -56,19 +70,24 @@ function gauss() {
 //空き窓口ルーチン
 function cll(time, regi) {
     for (let j = 0; j < M; j++) {        //jは窓口数と比較
-        if (regi[j] < time) {
-            regi[j] = 0.0;
+        if (regi[j].number < time) {
+            regi[j].element.style.left = '2000px';
+            regi[j].element.style.top = '2000px';
+            regi[j] = 0;  // レジを終えて退場
             return;
         }
     }
 }
 
-//最短空き窓口
+/**
+ * 最短空き窓口
+ * @param {Object} regi 窓口の配列
+ * @returns number 最も早く処理が終わる窓口の番号
+ */
 function minimum(regi) {
-    let min = M;
-    regi[min] = 100000.;
+    let min = 0;
     for (let p = 0; p < M; p++) {
-        if (regi[min] > regi[p])
+        if (regi[p].number < regi[min].number)
             min = p;
     }
     return min;
@@ -76,111 +95,43 @@ function minimum(regi) {
 
 //待ち解除ルーチン
 function tim(ans, time, regi, b) {
-    for (let j = 0; j < k; j++) {
+    for (let j of b) {
         let min = minimum(regi);
 
-        let dummy_a2 = regi[min];
-        //console.log( {a, dummy_a2, time });
-        if (regi[min] < time) {
-            ans += regi[min] - b[0];
-            let dummy_a = regi[min];
-            let dummy_b = b[0];
-            //console.log( {ans, dummy_a, dummy_b } ); //デバック用
-            regi[min] += gauss();
-            let aki = min
-            console.log(aki + "が空き，新たに入りました");
-            /* 窓口から出る＋新たに入るアニメーション */
-            function moveImage() {
-                let x = 0;
-                let y = 0;
-                if (aki == 0) {
-                    x = 60;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                } else if (aki == 1) {
-                    x = 170;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                } else if (aki == 2) {
-                    x = 280;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                } else if (aki == 3) {
-                    x = 390;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                } else if (aki == 4) {
-                    x = 500;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                } else if (aki == 5) {
-                    x = 610;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                } else if (aki == 6) {
-                    x = 720;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                } else if (aki == 7) {
-                    x = 830;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                } else if (aki == 8) {
-                    x = 940;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                } else if (aki == 9) {
-                    x = 1050;
-                    y = 200;
-                    document.querySelector('#customer01').style.left = x;
-                    document.querySelector('#customer01').style.top = y;
-                }
-            }
-            k--;
-            let l;
-            for (l = 0; l < k; l++) {
-                b[l] = b[l + 1];
-            }
-            b[l + 1] = 0.0;
+        if (regi[min].number < time) {
+            ans += regi[min].number - b[0].number;
+            //            regi[min].number += gauss();
+            regi[min] = b.shift();
+            for( let i in b) {
+                b[i].element.style.left = `'${retu_location[i]}px'`;
+            };
         }
     }
     return ans;
 }
 
 //窓口選択ルーチン
-function sentaku(t, regi, b) {
+function sentaku(t, regi, b, elements) {
     for (let j = 0; j < M; j++) {
-        if (regi[j] == 0.0) {
+        if (regi[j] == 0) {
             ///let gg = gauss();
             //console.log( {j, gg, t}); //デバック用
-            regi[j] = t + gauss();
+            regi[j] = new Customer(t + gauss(), elements.shift());
             let enter = j;
             console.log(enter + "に入りました");
             /* 窓口に入るアニメーション */
-            if (typeof window === 'object') {      //document.querySelectorでエラーがでたため
-                //documentを使う関数を入れる
-                document.querySelector('#customer1').style.left = reg.x[enter];
-                document.querySelector('#customer1').style.top = reg.y[enter];
+            regi[j].element.style.left = `${regi_enter.x[j]}px`;
+            regi[j].element.style.top = `${regi_enter.y[j]}px`;
 
-            }
+
             return;
         }
     }
-    b[k] = t;
-    k++;
+    b.push(new Customer(t, elements.shift()));
     return;
 }
 
-function poison(t) {
+function poison() {
     let taw = -Math.log(Math.random() + EPS) / ALF;
     return taw;
 }
@@ -200,26 +151,6 @@ if (typeof window === 'object') {      //document.querySelectorでエラーが�
     madogui.strokeRect(830, 220, 80, 80);//窓口7
     madogui.strokeRect(940, 220, 80, 80);//窓口8
     madogui.strokeRect(1050, 220, 80, 80);//窓口9
-
 }
 
-// window.onload = ()=>{
-//     // canvas準備
-//     const board = document.querySelector("#anime");  //getElementById()等でも可。オブジェクトが取れれば良い。
-//     const ctx = board.getContext("2d");
-
-//     // 画像読み込み
-//     const customer = new Image();
-//     customer.src = "/img/customer_woman.jpg";  // 画像のURLを指定
-//     customer.onload = () => {
-//       ctx.drawImage(customer, 610, 0, 120, 80);
-//     };
-//   };
-
-/*スタートボタン押された時の処理*/
-// str.addEventListener("click", function () { 
-
-//   })
-
-main();
 
